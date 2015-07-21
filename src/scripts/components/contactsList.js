@@ -27,12 +27,21 @@ var Contacts = React.createClass({
 });
 
 var AddContact = React.createClass({
+    handleClick: function(e) {
+      e.preventDefault();
+      var new_contact = {
+        id: this.props.total_contacts+1,
+        name : 'Name here',
+        tel: 'Phone number here',
+        email: 'Email here',
+        editing: true
+      };
+      ContactsStore.upsertContact(new_contact);
+    },
     render: function() {
         return (
             <p className="text-center">
-                <Link to="add">
-                    <a className="btn btn-lg btn-outline">Add Contact</a>
-                </Link>
+              <a className="btn btn-lg btn-outline" onClick={ this.handleClick }>Add Contact</a>
             </p>
         );
     }
@@ -64,7 +73,7 @@ var ContactsList = React.createClass({
         return (
             <div>
                 <h2 className="page-header text-center">List of contacts</h2>
-                <AddContact />
+                <AddContact total_contacts={this.state.contacts.length}/>
                 <Contacts contacts={this.state.contacts}/>
             </div>
         );

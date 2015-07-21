@@ -19,9 +19,7 @@ var Contact = React.createClass({
     },
     handleSubmit: function(e) {
       e.preventDefault();
-
       ContactsStore.upsertContact(this.state.contact);
-      // remove classes
 
     },
     // update the state when they type stuff a the text box
@@ -43,18 +41,18 @@ var Contact = React.createClass({
         return (
             <li className={cl_editable_contact}>
               <form onSubmit={ this.handleSubmit }>
-                <div className="media-left media-middle">
-                  <div className="profile-pic-thumb">
+                <div className='media-left media-middle'>
+                  <div className='profile-pic-thumb'>
                     {createThumbnail(this.props.contact)}
                   </div>
                 </div>
 
-                <div className="media-body">
-                    <div className="media-heading">
+                <div className='media-body'>
+                    <div className='media-heading'>
                       <h3>
                         <input className={cl_editable_field} value={this.state.contact.name} disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "name")}/>
                           <small>
-                            <span>
+                            <span className='contact-actions'>
                               <Glyphicon glyph='pencil' onClick={Actions.startEditContact.bind(this, this.state.contact)}/>
                               <Glyphicon glyph='trash' onClick={Actions.removeContact.bind(this, this.state.contact)} />
                             </span>

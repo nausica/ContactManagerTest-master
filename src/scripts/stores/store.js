@@ -74,15 +74,15 @@ var contactsStore  = Reflux.createStore({
     var existing = _.where(_contacts, { 'id': contact.id })[0];
     if (!existing) {
       contact.id = _contacts.length + 1;
-      _contacts.push(contact);
+      _contacts.unshift(contact);
     } else {
       // update
       existing.name = contact.name;
       existing.email = contact.email;
       existing.tel = contact.tel;
       delete existing.editing;
-      this.trigger(_contacts);
     }
+    this.trigger(_contacts);
   },
 
   removeContact: function(contact) {

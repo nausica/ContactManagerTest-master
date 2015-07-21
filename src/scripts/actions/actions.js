@@ -5,7 +5,9 @@ var actions = Reflux.createActions({
     'upsertContact': {},
     'removeContact': {},
     'startEditContact': {},
-    'cancelEditContact': {}
+    'cancelEditContact': {},
+    'startAddContact': {},
+    'cancelAddContact': {}
 });
 
 module.exports = actions;
