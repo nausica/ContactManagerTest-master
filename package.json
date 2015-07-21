@@ -1,0 +1,42 @@
+{
+  "name": "ContactManagerTest-master",
+  "version": "0.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nausica/ContactManagerTest-master.git"
+  },
+  "author": "Sonia Fabre",
+  "bugs": {
+    "url": "https://github.com/nausica/ContactManagerTest-master/issues"
+  },
+  "homepage": "https://github.com/nausica/ContactManagerTest-master",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.23.7",
+    "react-router": "^0.13.3"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.0",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-cache": "^0.2.10",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-less": "^3.0.3",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-size": "^1.2.3",
+    "gulp-uglify": "^1.2.0",
+    "gulp-useref": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "path": "^0.11.14",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.0"
+  }
+}
