@@ -2,11 +2,14 @@
 /** @jsx React.DOM */
 var React = require('react');
 
+// view components
+var ContactsList = require('./components/contactsList');
+
 var App = React.createClass({
 
   render: function() {
     return (
-        <h1> Contact Manager </h1>
+          <ContactsList />
       )
   }
 });
