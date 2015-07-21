@@ -2,51 +2,14 @@
 /** @jsx React.DOM */
 var React         = require('react');
 var Glyphicon     = require('react-bootstrap').Glyphicon;
+var Button        = require('react-bootstrap').Button;
+var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
 var Link          = require('react-router').Link;
 var Reflux        = require('reflux');
 var ContactsStore = require('../stores/store');
 var Actions       = require('../actions/actions');
+var Contact       = require('./contact');
 
-
-var Contact = React.createClass({
-
-    render: function() {
-        var createThumbnail = function(contact) {
-            var url = '../images/faces/'+contact.id+'.jpg';
-            return <img className="media-object" src={url}/>;
-        };
-        return (
-            <li className="media col-md-6 col-lg-4">
-                <div className="media-left">
-                    {createThumbnail(this.props.contact)}
-                </div>
-
-                <div className="media-body">
-                    <div className="media-heading">
-                      <h3>
-                          {this.props.contact.name}
-                          <small>
-                              <Link to="contact" params={{ id: this.props.contact.id }}>
-                                <Glyphicon glyph='pencil' />
-                              </Link>
-                              <a onClick={Actions.removeContact.bind(this, this.props.contact)} className="delete-contract" href="#">
-                                  <Glyphicon glyph='trash' />
-                              </a>
-                          </small>
-                      </h3>
-                    </div>
-                    <dl>
-                        <dt>Phone Number:</dt>
-                        <dd>{this.props.contact.tel}</dd>
-                        <dt>Email:</dt>
-                        <dd>{this.props.contact.email}</dd>
-                    </dl>
-                </div>
-                <hr/>
-            </li>
-        );
-    }
-});
 
 var Contacts = React.createClass({
 

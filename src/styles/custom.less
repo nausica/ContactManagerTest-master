@@ -1,3 +1,4 @@
+/* css from original backbone project */
 .bs-header {
   position: relative;
   padding: 30px 15px;
@@ -81,3 +82,58 @@ a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #563d7c;
 }
+
+/* end css from original backbone project*/
+
+
+.contacts-container {
+
+  li.inline-mode {
+    background-color: bisque;
+    border-radius: 4px;
+  }
+  .overlay {
+    position:absolute;
+    bottom: 30px;
+    right: 20px;
+  }
+  input.inline-edit {
+      /* Eliminate borders and padding */
+      border: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+
+      /* Inherit the parent element's typography */
+      font: inherit;
+      color: inherit;
+      line-height: inherit;
+      font-size: inherit;
+      text-align: inherit;
+
+      vertical-align: top;
+    }
+    input.inline-edit-active {
+      /* Change the background to a light yellow */
+      background-color: #FFD;
+      padding: 0 10px;
+      margin: 0;
+      border: none;
+      border-radius: 4px;
+      width: 100%;
+
+    }
+
+  /* Alternative to TB thumbnail */
+  .profile-pic-thumb {
+    background: rgba(0, 0, 0, .3);
+    padding: 12px;
+    border-radius: 3px;
+    .profile-pic {
+      border-radius: 2px;
+      border: 4px solid #fff;
+    }
+  }
+}
+
+

@@ -55,6 +55,8 @@ var contactsStore  = Reflux.createStore({
     this.listenTo(actions.upsertContact, this.upsertContact);
     // register removeContact action & bind to removeContact function
     this.listenTo(actions.removeContact, this.removeContact);
+    this.listenTo(actions.startEditContact, this.startEditContact);
+    this.listenTo(actions.cancelEditContact, this.cancelEditContact);
 
   },
 
@@ -78,6 +80,8 @@ var contactsStore  = Reflux.createStore({
       existing.name = contact.name;
       existing.email = contact.email;
       existing.tel = contact.tel;
+      delete existing.editing;
+      this.trigger(_contacts);
     }
   },
 
@@ -87,6 +91,19 @@ var contactsStore  = Reflux.createStore({
     });
     this.trigger(_contacts);
   },
+
+  startEditContact: function(contact) {
+    var existing = _.where(_contacts, { 'id': contact.id })[0];
+    existing.editing = true;
+    this.trigger(_contacts);
+  },
+
+  cancelEditContact: function(contact) {
+    console.log('cancelEdit');
+    var existing = _.where(_contacts, { 'id': contact.id })[0];
+    delete existing.editing;
+    this.trigger(_contacts);
+  }
 });
 
 module.exports = contactsStore;

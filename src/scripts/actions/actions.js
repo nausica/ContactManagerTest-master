@@ -3,7 +3,9 @@ var Reflux = require('reflux');
 
 var actions = Reflux.createActions({
     'upsertContact': {},
-    'removeContact': {}
+    'removeContact': {},
+    'startEditContact': {},
+    'cancelEditContact': {}
 });
 
 module.exports = actions;
