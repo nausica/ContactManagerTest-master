@@ -9,16 +9,16 @@ var Route         = Router.Route;
 var DefaultRoute  = Router.DefaultRoute;
 
 // view components
-var ContactsList = require('./components/contactsList');
-var ViewContact = require('./components/contactView');
-var AddContact = require('./components/contactView');
+var ContactsList  = require('./components/contactsList');
+var AddContact    = require('./components/add');
+var EditContact   = require('./components/edit');
 
 
 var routes = (
   <Route handler={ ContactManager }>
-    <Route name="contact" path="/edit/:id" handler={ ViewContact } />
+    <Route name="contact" path="/edit/:id" handler={ EditContact } />
     <Route name="add" path="/new" handler={ AddContact } />
-    <DefaultRoute name="contacts" handler={ ContactsList } />
+    <DefaultRoute name="home" handler={ ContactsList } />
   </Route>
 );
 
