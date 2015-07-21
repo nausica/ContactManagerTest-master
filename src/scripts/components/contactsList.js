@@ -2,6 +2,7 @@
 /** @jsx React.DOM */
 var React       = require('react');
 var Glyphicon   = require('react-bootstrap').Glyphicon;
+var Link        = require('react-router').Link;
 
 
 var Contact = React.createClass({
@@ -19,9 +20,11 @@ var Contact = React.createClass({
                     <h3>
                         {this.props.contact.name}
                         <small>
-                            <a href="#contacts/edit/1">
-                                <Glyphicon glyph='pencil' />
-                            </a>
+                            <Link to="contact" params={{ id: this.props.contact.id }}>
+                                <a>
+                                    <Glyphicon glyph='pencil' />
+                                </a>
+                            </Link>
                             <a href="#contacts/delete/1" className="delete-contract">
                                 <Glyphicon glyph='trash' />
                             </a>
@@ -60,7 +63,9 @@ var AddContact = React.createClass({
     render: function() {
         return (
             <p className="text-center">
-                <a href="#contacts/new" className="btn btn-lg btn-outline">Add Contact</a>
+                <Link to="add">
+                    <a href="#contacts/new" className="btn btn-lg btn-outline">Add Contact</a>
+                </Link>
             </p>
         );
     }
