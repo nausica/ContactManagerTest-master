@@ -33,8 +33,7 @@ var AddContact = React.createClass({
         id: this.props.total_contacts+1,
         name : 'Name here',
         tel: 'Phone number here',
-        email: 'Email here',
-        editing: true
+        email: 'Email here'
       };
       ContactsStore.upsertContact(new_contact);
     },

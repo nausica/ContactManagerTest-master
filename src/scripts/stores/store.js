@@ -74,6 +74,8 @@ var contactsStore  = Reflux.createStore({
     var existing = _.where(_contacts, { 'id': contact.id })[0];
     if (!existing) {
       contact.id = _contacts.length + 1;
+      contact.is_new = true;
+      contact.editing = true;
       _contacts.unshift(contact);
     } else {
       // update
@@ -81,6 +83,7 @@ var contactsStore  = Reflux.createStore({
       existing.email = contact.email;
       existing.tel = contact.tel;
       delete existing.editing;
+      delete existing.is_new;
     }
     this.trigger(_contacts);
   },
@@ -99,10 +102,13 @@ var contactsStore  = Reflux.createStore({
   },
 
   cancelEditContact: function(contact) {
-    console.log('cancelEdit');
     var existing = _.where(_contacts, { 'id': contact.id })[0];
-    delete existing.editing;
+    if (existing.is_new) {
+      this.removeContact(contact);
+    } else {
+      delete existing.editing;
     this.trigger(_contacts);
+  }
   }
 });
 
