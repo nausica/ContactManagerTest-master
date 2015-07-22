@@ -33,15 +33,10 @@ var Contacts = React.createClass({
 });
 
 var AddContact = React.createClass({
+
     handleClick: function(e) {
       e.preventDefault();
-      var new_contact = {
-        id: this.props.total_contacts+1,
-        name : '',
-        tel: '',
-        email: ''
-      };
-      ContactsStore.upsertContact(new_contact);
+      this.props.handleClick();
     },
     render: function() {
         return (
@@ -68,8 +63,19 @@ var ContactsList = React.createClass({
       return getContacts();
     },
 
+    handleAddContact: function() {
+
+      var new_contact = {
+        id:  Math.floor((Math.random() * 10000) + 1),
+        name : '',
+        tel: '',
+        email: ''
+      };
+      ContactsStore.upsertContact(new_contact);
+    },
+
     onContactsUpdate: function(contactsData) {
-      console.log('onContactsUpdate')
+
       this.setState({
         contacts: contactsData
       });
@@ -79,7 +85,7 @@ var ContactsList = React.createClass({
         return (
             <div>
                 <h2 className="page-header text-center">List of contacts</h2>
-                <AddContact total_contacts={this.state.contacts.length}/>
+                <AddContact handleClick={this.handleAddContact}/>
                 <Contacts contacts={this.state.contacts}/>
             </div>
         );

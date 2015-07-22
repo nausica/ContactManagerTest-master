@@ -70,10 +70,10 @@ var contactsStore  = Reflux.createStore({
     return _.where(_contacts, { 'id': contactId })[0];
   },
 
+  // updates or inserts a contact, depending on existance in the store
   upsertContact: function(contact) {
     var existing = _.where(_contacts, { 'id': contact.id })[0];
     if (!existing) {
-      contact.id = _contacts.length + 1;
       contact.is_new = true;
       contact.editing = true;
       _contacts.unshift(contact);
@@ -89,20 +89,22 @@ var contactsStore  = Reflux.createStore({
     this.trigger(_contacts);
   },
 
+  // removes a contact
   removeContact: function(contact) {
-    console.log('removeContact')
     _.remove(_contacts, function(c) {
       return c.id === contact.id;
     });
     this.trigger(_contacts);
   },
 
+  // stars inline editing
   startEditContact: function(contact) {
     var existing = _.where(_contacts, { 'id': contact.id })[0];
     existing.editing = true;
     this.trigger(_contacts);
   },
 
+  // cancels inline editing
   cancelEditContact: function(contact) {
     var existing = _.where(_contacts, { 'id': contact.id })[0];
     if (existing) {

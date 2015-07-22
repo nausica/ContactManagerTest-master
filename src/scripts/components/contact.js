@@ -32,8 +32,10 @@ var Contact = React.createClass({
     render: function() {
 
         var createThumbnail = function(contact) {
-            var url = '../images/faces/'+contact.id+'.jpg';
-            return <img className="media-object profile-pic" src={url}/>;
+          var MAX_IMAGES = 15;
+          var image_id = contact.id % MAX_IMAGES;
+          var url = '../images/faces/'+image_id+'.jpg';
+          return <img className='media-object profile-pic' src={url}/>;
         };
         var cl_editable_contact = classNames('media', 'col-md-6', 'col-lg-4', { 'inline-mode': this.state.contact.editing || false });
         var cl_editable_field = classNames({ 'inline-edit': !this.state.contact.editing || false, 'inline-edit-active': this.state.contact.editing || false })
