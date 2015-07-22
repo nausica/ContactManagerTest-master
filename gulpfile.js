@@ -9,6 +9,7 @@ var browserify = require('browserify');
 var reactify   = require('reactify');
 var watchify   = require('watchify');
 var source     = require('vinyl-source-stream');
+var concat     = require('gulp-concat');
 var $          = require('gulp-load-plugins')();
 
 var is_prod = $.util.env.type === 'production';
@@ -25,7 +26,18 @@ function onError() {
 
 
 // Styles LESS > CSS
+gulp.task('bootstrap:prepareLess', function() {
+  return gulp.src('src/styles/custom-variables.less')
+    .pipe(gulp.dest('src/styles/lib/bootstrap/less'));
+});
+
+
 gulp.task('styles', function(){
+
+  gulp.src(['src/styles/lib/bootstrap/less/variables.less', 'src/styles/custom-variables.less'])
+    .pipe(concat('src/styles/lib/bootstrap/less/variables.less'))
+    .pipe(gulp.dest('.'));
+
   return gulp.src('src/styles/styles.less')
     .pipe(less())
     .pipe(minifycss())
