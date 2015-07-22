@@ -33,7 +33,7 @@ var Contact = React.createClass({
 
         var createThumbnail = function(contact) {
           var MAX_IMAGES = 15;
-          var image_id = contact.id % MAX_IMAGES;
+          var image_id = (contact.id % MAX_IMAGES) + 1;
           var url = '../images/faces/'+image_id+'.jpg';
           return <img className='media-object profile-pic' src={url}/>;
         };
