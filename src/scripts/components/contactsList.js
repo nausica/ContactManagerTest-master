@@ -1,6 +1,6 @@
 'use strict';
 /** @jsx React.DOM */
-var React         = require('react');
+var React         = require('react/addons');
 var Glyphicon     = require('react-bootstrap').Glyphicon;
 var Button        = require('react-bootstrap').Button;
 var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
@@ -10,14 +10,20 @@ var ContactsStore = require('../stores/store');
 var Actions       = require('../actions/actions');
 var Contact       = require('./contact');
 
-
 var Contacts = React.createClass({
 
     render: function() {
 
         var renderContact = function(contact) {
-            return <Contact contact={contact} key={contact.id} />;
+            return <Contact contact={contact} key={contact.id} />
         };
+        var items = this.props.contacts.map(function(item, i) {
+          return (
+            <div key={item.id}>
+              <Contact contact={item} key={item.id} />
+            </div>
+          );
+        }.bind(this));
         return (
             <ul className="media-list row contacts-container">
                 {this.props.contacts.map(renderContact)}
@@ -31,16 +37,16 @@ var AddContact = React.createClass({
       e.preventDefault();
       var new_contact = {
         id: this.props.total_contacts+1,
-        name : 'Name here',
-        tel: 'Phone number here',
-        email: 'Email here'
+        name : '',
+        tel: '',
+        email: ''
       };
       ContactsStore.upsertContact(new_contact);
     },
     render: function() {
         return (
             <p className="text-center">
-              <a className="btn btn-lg btn-outline" onClick={ this.handleClick }>Add Contact</a>
+              <a className="btn btn-lg btn-outline add-contact-button" onClick={ this.handleClick }>Add Contact</a>
             </p>
         );
     }
@@ -63,6 +69,7 @@ var ContactsList = React.createClass({
     },
 
     onContactsUpdate: function(contactsData) {
+      console.log('onContactsUpdate')
       this.setState({
         contacts: contactsData
       });

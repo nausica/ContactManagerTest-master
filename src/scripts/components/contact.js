@@ -28,7 +28,9 @@ var Contact = React.createClass({
       thisContact[field] = e.target.value;
       this.setState({contact: thisContact});
     },
+
     render: function() {
+
         var createThumbnail = function(contact) {
             var url = '../images/faces/'+contact.id+'.jpg';
             return <img className="media-object profile-pic" src={url}/>;
@@ -49,22 +51,20 @@ var Contact = React.createClass({
 
                 <div className='media-body'>
                     <div className='media-heading'>
-                      <h3>
-                        <input className={cl_editable_field} value={this.state.contact.name} disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "name")}/>
-                          <small>
-                            <span className='contact-actions'>
-                              <Glyphicon glyph='pencil' onClick={Actions.startEditContact.bind(this, this.state.contact)}/>
-                              <Glyphicon glyph='trash' onClick={Actions.removeContact.bind(this, this.state.contact)} />
-                            </span>
-                          </small>
-                      </h3>
+                      <h4>
+                        <input className={cl_editable_field} value={this.state.contact.name} placeholder="Enter name here" disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "name")}/>
+                      </h4>
                     </div>
                     <dl>
                         <dt>Phone Number:</dt>
-                        <dd><input className={cl_editable_field} value={this.state.contact.tel} disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "tel")}/></dd>
+                        <dd><input className={cl_editable_field} value={this.state.contact.tel} placeholder="Enter phone here" disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "tel")}/></dd>
                         <dt>Email:</dt>
-                        <dd><input className={cl_editable_field} value={this.state.contact.email} disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "email")} /></dd>
+                        <dd><input className={cl_editable_field} value={this.state.contact.email} placeholder="Enter email here" disabled={actions_disabled ? "disabled" : false} onChange={this.handleChange.bind(this, "email")} /></dd>
                     </dl>
+                    <div className='contact-actions'>
+                      <Glyphicon className='contact-actions-icon' glyph='pencil' onClick={Actions.startEditContact.bind(this, this.state.contact)}/>
+                      <Glyphicon className='contact-actions-icon' glyph='trash' onClick={Actions.removeContact.bind(this, this.state.contact)} />
+                    </div>
                     <ButtonToolbar className={cl_editable_buttons}>
                       <Button type='submit' bsStyle='primary' bsSize='xsmall'>Save</Button>
                       <Button bsSize='xsmall' onClick={Actions.cancelEditContact.bind(this, this.state.contact)} >Cancel</Button>
